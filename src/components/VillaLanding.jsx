@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { FaAirbnb, FaArrowRight, FaFacebookF, FaHotel, FaInstagram, FaPlane, FaTripadvisor, FaWhatsapp } from "react-icons/fa";
+import { SiBookingdotcom } from "react-icons/si";
 
 const images = {
   hero: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2200&q=88",
@@ -33,8 +35,15 @@ const reviews = [
 ];
 
 function ArrowIcon() {
-  return <span aria-hidden="true">→</span>;
+  return <FaArrowRight aria-hidden="true" />;
 }
+
+const bookingPlatforms = [
+  ["Airbnb", "https://www.airbnb.com/", FaAirbnb, "hover:border-[#ff385c] hover:text-[#ff385c]"],
+  ["Traveloka", "https://www.traveloka.com/", FaPlane, "hover:border-[#0194f3] hover:text-[#0194f3]"],
+  ["Agoda", "https://www.agoda.com/", FaHotel, "hover:border-[#5b2c83] hover:text-[#5b2c83]"],
+  ["Booking.com", "https://www.booking.com/", SiBookingdotcom, "hover:border-[#003b95] hover:text-[#003b95]"],
+];
 
 function Photo({ src, alt, className = "" }) {
   return (
@@ -211,7 +220,10 @@ function Booking() {
       <div className="relative mx-auto max-w-4xl px-6 text-center">
         <h2 className="mb-6 font-serif text-4xl text-white md:text-5xl">Siap untuk Liburan Impian Anda?</h2>
         <p className="mb-10 text-lg font-light text-white/80">Jangan lewatkan kesempatan untuk menginap di Villa Aura. Pesan sekarang dan dapatkan penawaran khusus untuk pemesanan awal.</p>
-        <div className="flex flex-col justify-center gap-4 sm:flex-row"><a href="mailto:info@villaaura.com?subject=Booking Villa Aura" className="flex items-center justify-center gap-2 rounded-full bg-white px-10 py-4 font-semibold uppercase tracking-wider text-[#8b5a33] shadow-xl transition hover:-translate-y-1 hover:bg-[#1a1a1a] hover:text-white">Pesan via Aplikasi <ArrowIcon /></a><a href="https://wa.me/6281234567890" target="_blank" rel="noreferrer" className="flex items-center justify-center gap-2 rounded-full border-2 border-white px-10 py-4 font-semibold uppercase tracking-wider text-white transition hover:bg-white hover:text-[#8b5a33]">Hubungi Kami <ArrowIcon /></a></div>
+        <div className="mb-9 flex flex-col justify-center gap-4 sm:flex-row"><a href="mailto:info@villaaura.com?subject=Booking Villa Aura" className="flex items-center justify-center gap-2 rounded-full bg-white px-10 py-4 font-semibold uppercase tracking-wider text-[#8b5a33] shadow-xl transition hover:-translate-y-1 hover:bg-[#1a1a1a] hover:text-white">Pesan via Email <ArrowIcon /></a><a href="https://wa.me/6281234567890" target="_blank" rel="noreferrer" className="flex items-center justify-center gap-2 rounded-full border-2 border-white px-10 py-4 font-semibold uppercase tracking-wider text-white transition hover:bg-white hover:text-[#8b5a33]"><FaWhatsapp aria-hidden="true" className="text-lg" /> WhatsApp Kami</a></div>
+        <div className="grid grid-cols-2 gap-3 text-left sm:grid-cols-4">
+          {bookingPlatforms.map(([label, href, Icon, hoverClass]) => <a key={label} href={href} target="_blank" rel="noreferrer" aria-label={`Booking melalui ${label}`} className={`flex items-center gap-3 rounded-xl border border-white/30 bg-white/10 px-4 py-3 text-sm font-semibold text-white transition hover:-translate-y-1 hover:bg-white ${hoverClass}`}><Icon aria-hidden="true" className="shrink-0 text-xl" /><span>{label}</span></a>)}
+        </div>
       </div>
     </section>
   );
@@ -221,7 +233,7 @@ function Footer() {
   return (
     <footer className="bg-[#1a1a1a] px-6 py-12 text-white md:px-12">
       <div className="mx-auto mb-12 grid max-w-7xl gap-8 md:grid-cols-4">
-        <div className="md:col-span-2"><a href="#home" className="mb-4 block font-serif text-2xl font-bold tracking-widest">VILLA AURA</a><p className="mb-6 max-w-sm text-sm text-gray-400">Vila privat mewah dengan konsep tropis modern di Ubud, Bali. Nikmati pengalaman menginap yang tak terlupakan bersama orang tersayang.</p><div className="flex gap-4"><a href="#gallery" aria-label="Instagram" className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 transition hover:bg-[#8b5a33]">◎</a><a href="#gallery" aria-label="Facebook" className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 transition hover:bg-[#8b5a33]">f</a><a href="#reviews" aria-label="Tripadvisor" className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 transition hover:bg-[#8b5a33]">★</a></div></div>
+        <div className="md:col-span-2"><a href="#home" className="mb-4 block font-serif text-2xl font-bold tracking-widest">VILLA AURA</a><p className="mb-6 max-w-sm text-sm text-gray-400">Vila privat mewah dengan konsep tropis modern di Ubud, Bali. Nikmati pengalaman menginap yang tak terlupakan bersama orang tersayang.</p><div className="flex gap-4"><a href="https://www.instagram.com/" target="_blank" rel="noreferrer" aria-label="Instagram Villa Aura" className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 transition hover:bg-[#8b5a33]"><FaInstagram aria-hidden="true" /></a><a href="https://www.facebook.com/" target="_blank" rel="noreferrer" aria-label="Facebook Villa Aura" className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 transition hover:bg-[#8b5a33]"><FaFacebookF aria-hidden="true" /></a><a href="https://www.tripadvisor.com/" target="_blank" rel="noreferrer" aria-label="Tripadvisor Villa Aura" className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 transition hover:bg-[#8b5a33]"><FaTripadvisor aria-hidden="true" /></a></div></div>
         <div><h4 className="mb-4 text-lg font-semibold">Tautan Cepat</h4><ul className="space-y-2 text-sm text-gray-400">{[["Beranda", "home"], ["Tentang Kami", "about"], ["Galeri", "gallery"], ["Ulasan", "reviews"]].map(([label, id]) => <li key={id}><a href={`#${id}`} className="transition hover:text-[#8b5a33]">{label}</a></li>)}</ul></div>
         <div><h4 className="mb-4 text-lg font-semibold">Kontak</h4><ul className="space-y-3 text-sm text-gray-400"><li>⌖ Jl. Raya Tegallalang, Ubud, Bali</li><li>◷ +62 812 3456 7890</li><li>✉ info@villaaura.com</li></ul></div>
       </div>
